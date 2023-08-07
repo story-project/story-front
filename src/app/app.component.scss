@@ -1,0 +1,6 @@
+.main {
+  height: 100vh; // footer'ni balandligini 100vh dan ayirib tashlaymiz
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

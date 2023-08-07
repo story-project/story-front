@@ -1,0 +1,37 @@
+<!--Header start-->
+<header id="header">
+  <nav class="navbar navbar-dark position-fixed w-100 shadow navbar-expand-md headerBg">
+    <div class="container-fluid">
+      <a class="navbar-brand me-4 headerLo" routerLink="home">
+        <i class="fa-solid fa-book fa-xl"></i>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse headerCol navbar-collapse justify-content-between flex-row-reverse"
+           id="navbarSupportedContent">
+
+        <ul class="navbar-nav headerMenu mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link fw-semibold" routerLink="home" routerLinkActive="linkActive">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-semibold" href="#">Contacts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ms-0 ms-lg-4 text-light" routerLink="login">Login</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control rounded-0 shadow-none border-0 me-2" type="search" placeholder="Search"
+                 aria-label="Search">
+          <button class="btn headerBtn rounded-0 btn-primary border-0 shadow-none" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>
+<!--Header end-->

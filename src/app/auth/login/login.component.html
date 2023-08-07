@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <div class="formBox">
+    <form [formGroup]="loginForm">
+      <div class="mb-3">
+        <mat-form-field class="w-100">
+          <mat-label>Emailni kiriting</mat-label>
+          <input matInput placeholder="pat@example.com" required>
+
+          <span
+            style="color: red"
+            *ngIf="email?.hasError('required') && email?.touched"
+          >Fill this input...</span>
+          <span
+            style="color: red;"
+            *ngIf="email?.hasError('email')"
+          >example user@example.com</span>
+        </mat-form-field>
+      </div>
+
+      <div class="mb-3">
+        <mat-form-field class="w-100">
+          <mat-label>Parolni kiriting</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'">
+          <button
+            mat-icon-button matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"
+            type="button"
+          >
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <div class="mb-3">
+
+        <button type="submit" mat-raised-button class="w-100 py-4 m-0" >Kirish</button>
+      </div>
+
+      <div class="pt-2 d-flex">
+        <p class="text-white">Hali ro'yhatdan o'tmadim,</p>
+        <a routerLink="#" class="text-white ps-1">Ro'yhatdan o'tish</a>
+      </div>
+    </form>
+  </div>
+</div>
