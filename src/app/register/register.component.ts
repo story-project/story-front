@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {RegisterService} from "./register.service";
+import {Person} from "./person";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -9,7 +12,11 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class RegisterComponent implements OnInit{
   registerForm!: FormGroup
   hide = true
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private registerService: RegisterService,
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
@@ -22,6 +29,9 @@ export class RegisterComponent implements OnInit{
         '',
         [Validators.required]
       ],
+      fullname: [
+        ''
+      ],
       password: [
         '',
         [Validators.required, Validators.minLength(6)]
@@ -29,8 +39,27 @@ export class RegisterComponent implements OnInit{
     })
   }
 
-  pushForm() {
-    console.log(this.registerForm)
+  registerProcess() {
+    console.log(this.registerForm.value)
+    this.registerService.register(this.registerForm.value).subscribe(
+      (res) => {
+        console.log(res)
+        const person: Person = {
+          username: this.registerForm.value.username,
+          fullname: this.registerForm.value.fullname,
+          user: res['@id']
+        }
+        this.registerService.addPerson(person).subscribe(
+          (res) => {
+            console.log(res)
+            this.router.navigate(['/home'])
+          },
+          err => {
+            console.log(err)
+          }
+        )
+      }
+    )
   }
 
   get email() {

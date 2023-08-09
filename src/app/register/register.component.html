@@ -2,7 +2,7 @@
   <div class="formContainer">
     <h2 class="formTitle ">Ro'yhatdan o'tish</h2>
     <div class="formBox">
-      <form [formGroup]="registerForm" (ngSubmit)="pushForm()">
+      <form [formGroup]="registerForm" (ngSubmit)="registerProcess()">
         <div class="mb-3">
           <mat-form-field class="w-100">
             <mat-label>Emailni kiriting</mat-label>
@@ -33,7 +33,7 @@
         <div class="mb-3">
           <mat-form-field class="w-100">
             <mat-label>To'liq ismingiz</mat-label>
-            <input matInput >
+            <input matInput formControlName="fullname">
           </mat-form-field>
         </div>
 
