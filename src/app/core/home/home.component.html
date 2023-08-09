@@ -1,0 +1,32 @@
+<!-- Main Section start -->
+<section id="mainSection">
+  <div class="container-fluid ">
+    <div class="row mb-5 justify-content-evenly">
+
+      <!--Sidebar start-->
+      <div class="col-12 col-md-3 h-100 position-static rounded-0 shadow pe-0 mt-4 list-group sidebarBg">
+        <ng-container *ngFor="let category of categories">
+          <app-category
+            [category] = category
+          ></app-category>
+        </ng-container>
+
+      </div>
+      <!--Sidebar end-->
+
+      <!--Main start-->
+      <div class="col-12 col-md-8 pt-3 px-3 row justify-content-evenly shadow mt-4 mainBg">
+        <ng-container *ngFor="let storyCart of storyCarts">
+          <div class="card mb-3 col-10 col-sm-6 col-lg-4 col-xl-3 p-2 rounded-0">
+            <app-story-cart
+              [storyCart]="storyCart"
+            ></app-story-cart>
+          </div>
+
+        </ng-container>
+      </div>
+      <!--Main end-->
+    </div>
+  </div>
+</section>
+<!-- Main Section end -->
