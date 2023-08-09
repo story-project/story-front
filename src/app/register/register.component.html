@@ -1,0 +1,74 @@
+<div class="container-fluid">
+  <div class="formContainer">
+    <h2 class="formTitle ">Ro'yhatdan o'tish</h2>
+    <div class="formBox">
+      <form [formGroup]="registerForm" (ngSubmit)="pushForm()">
+        <div class="mb-3">
+          <mat-form-field class="w-100">
+            <mat-label>Emailni kiriting</mat-label>
+            <input
+              matInput
+              formControlName="email"
+              placeholder="pat@example.com"
+              required>
+
+            <span
+              style="color: #656255"
+              *ngIf="email?.hasError('required') && email?.touched"
+            >Input'ni to'ldiring</span>
+            <span
+              style="color: #656255;"
+              *ngIf="email?.hasError('email')"
+            >namuna user@example.com</span>
+          </mat-form-field>
+        </div>
+
+        <div class="mb-3">
+          <mat-form-field class="w-100">
+            <mat-label>Username kiriting</mat-label>
+            <input matInput formControlName="username">
+          </mat-form-field>
+        </div>
+
+        <div class="mb-3">
+          <mat-form-field class="w-100">
+            <mat-label>To'liq ismingiz</mat-label>
+            <input matInput >
+          </mat-form-field>
+        </div>
+
+        <div class="mb-3">
+          <mat-form-field class="w-100">
+            <mat-label>Parolni kiriting</mat-label>
+            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+            <button
+              mat-icon-button matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"
+              type="button"
+            >
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <div class="mb-3">
+
+          <button
+            type="submit"
+            mat-raised-button
+            [disabled]="registerForm.invalid"
+            class="w-100 py-4 m-0 bg-white"
+          >Ro'yhatdan o'tish</button>
+        </div>
+
+        <div class="pt-2 d-flex">
+          <p class="text-white m-0">Ro'yhatdan o'tganmisiz,</p>
+          <a routerLink="/login" class="text-white ps-1">Kirish</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+
