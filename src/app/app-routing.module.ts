@@ -1,18 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from "./core/home/home.component";
-// import {authCanmatchGuard, authCantmatchGuard} from "./auth/guards/auth-canmatch.guard";
+import {authCanmatchGuard, authCantmatchGuard} from "./auth/guards/auth-canmatch.guard";
 
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    // canMatch: [authCanmatchGuard]
-  },
-  {
-    path: 'category/:id',
-    component: HomeComponent,
-    // canMatch: [authCanmatchGuard]
+    canMatch: [authCanmatchGuard]
   },
   {
     path: 'story/:id',
@@ -21,7 +16,7 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./auth/auth.module').then(m=>m.AuthModule),
-    // canMatch: [authCantmatchGuard]
+    canMatch: [authCantmatchGuard]
   },
   {
     path: 'register',
