@@ -51,6 +51,7 @@ export class RegisterComponent implements OnInit{
         }
         this.registerService.addPerson(person).subscribe(
           (res) => {
+
             console.log(res)
             this.router.navigate(['/home'])
           },

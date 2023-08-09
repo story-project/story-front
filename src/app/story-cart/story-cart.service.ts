@@ -13,7 +13,7 @@ export class StoryCartService implements OnInit{
   ngOnInit() {
   }
 
-  getStories() {
-    return this.http.get(`${environment.baseUrl}/stories`)
+  getStories(categoryId = '') {
+    return this.http.get(`${environment.baseUrl}/stories${categoryId}`)
   }
 }
