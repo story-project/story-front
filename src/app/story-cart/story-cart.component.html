@@ -1,0 +1,8 @@
+  <img [src]="'http://localhost:8510' + storyCart.picture.contentUrl" class="card-img-top rounded-0" alt="Book Photo">
+  <div class="card-body">
+    <h5 class="card-title fw-semibold">{{storyCart.name}}</h5>
+    <p class="card-text">{{storyCart.description | slice:0:50}}...</p>
+    <p class="card-text-sec">Muallif: {{storyCart.creater.username}}</p>
+    <a [routerLink]="'/story/' + storyCart.id" class="btn w-100 fw-semibold rounded-0 mainBtn">O'qish</a>
+  </div>
+
