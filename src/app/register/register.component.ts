@@ -3,6 +3,9 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RegisterService} from "./register.service";
 import {Person} from "./person";
 import {Router} from "@angular/router";
+import {ProfileService} from "../profile/profile.service";
+import {BehaviorSubject} from "rxjs";
+import {AuthService} from "../auth/auth.service";
 
 @Component({
   selector: 'app-register',
@@ -12,10 +15,12 @@ import {Router} from "@angular/router";
 export class RegisterComponent implements OnInit{
   registerForm!: FormGroup
   hide = true
+
   constructor(
     private formBuilder: FormBuilder,
     private registerService: RegisterService,
-    private router: Router
+    private router: Router,
+    private profileService: ProfileService,
   ) {
   }
 
@@ -44,14 +49,14 @@ export class RegisterComponent implements OnInit{
     this.registerService.register(this.registerForm.value).subscribe(
       (res) => {
         console.log(res)
+
         const person: Person = {
           username: this.registerForm.value.username,
           fullname: this.registerForm.value.fullname,
           user: res['@id']
         }
-        this.registerService.addPerson(person).subscribe(
-          (res) => {
-
+        this.profileService.addPerson(person).subscribe(
+          (res: any) => {
             console.log(res)
             this.router.navigate(['/home'])
           },

@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Register} from "./register";
 import {Person} from "./person";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,5 @@ export class RegisterService {
 
   register(user: Register): Observable<any> {
     return this.http.post(`${environment.baseUrl}/users`, user)
-  }
-  addPerson(person: Person) {
-    return this.http.post(`${environment.baseUrl}/people`, person)
   }
 }
