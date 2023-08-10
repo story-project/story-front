@@ -4,5 +4,5 @@ export interface AddStory {
   text: '',
   picture: '',
   category: '',
-  creater: ''
+  creater: any
 }

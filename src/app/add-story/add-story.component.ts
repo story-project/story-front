@@ -17,7 +17,7 @@ export class AddStoryComponent implements OnInit, OnDestroy{
   addStoryForm!: FormGroup
   categories!: any
   sub$ = new Subject()
-  createrUrl!: any
+  createrUrl = "/api/people/15"
 
   constructor(
     private formBuilder: FormBuilder,
@@ -87,14 +87,14 @@ export class AddStoryComponent implements OnInit, OnDestroy{
           creater: this.createrUrl
         }
         console.log(story)
-        // this.addStoryService.addStory(story).subscribe(
-        //   res=>{
-        //   console.log(res)
-        //   },
-        //   err=> {
-        //     console.log(err)
-        //   }
-        //   )
+        this.addStoryService.addStory(story).subscribe(
+          res=>{
+          console.log(res)
+          },
+          err=> {
+            console.log(err)
+          }
+          )
 
       },
       err=>{
