@@ -19,11 +19,16 @@
             <a class="nav-link fw-semibold" routerLink="/home" routerLinkActive="linkActive">Asosiy</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-semibold" href="#">Hikoya qo'shish</a>
+            <a class="nav-link fw-semibold" href="/add-story">Hikoya qo'shish</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link ms-0 ms-lg-4 text-light" routerLink="/login">Kirish</a>
+          <li class="nav-item" *ngIf="isUserLoggedIn; else login">
+            <a class="nav-link ms-0 ms-lg-4 text-light" routerLink="/profile">Profil</a>
           </li>
+          <ng-template #login>
+            <li class="nav-item" >
+              <a class="nav-link ms-0 ms-lg-4 text-light" routerLink="/login">Kirish</a>
+            </li>
+          </ng-template>
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control rounded-0 shadow-none border-0 me-2" type="search" placeholder="Qidirish"

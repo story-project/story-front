@@ -1,0 +1,65 @@
+<div class="container-fluid">
+  <div class="addStoryContainer">
+    <div class="addStoryBox text-center" >
+      <h3 class="mb-3 text-light">Hikoya yozing</h3>
+      <form [formGroup]="addStoryForm" (ngSubmit)="addStoryProcess()">
+        <div class="mb-3">
+          <mat-form-field class="w-100">
+            <mat-label>Hikoya nomi</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+        </div>
+
+        <div class="mb-3">
+          <mat-form-field class="w-100">
+            <mat-label>Tavsif</mat-label>
+            <input matInput formControlName="description">
+          </mat-form-field>
+        </div>
+
+        <div class="mb-3" >
+          <mat-form-field class="w-100">
+            <mat-label>Hikoya</mat-label>
+            <textarea matInput formControlName="text" placeholder="Kunlarning birida..."></textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="mb-4 d-flex">
+          <div class="pe-2">
+            <mat-form-field class="w-100">
+              <mat-label>Kategoriyasi</mat-label>
+              <mat-select formControlName="category">
+                <mat-option
+
+                  *ngFor="let category of categories"
+                  [value]="category['@id']"
+                  >{{category.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="input-group addStoryUF">
+            <input
+              formControlName="picture"
+              (change)="onFileChange($event)"
+              type="file"
+              accept="file_type | image/* | media_type"
+              class="form-control rounded-0 rounded-top-1"
+              id="inputGroupFile01"
+            >
+          </div> <!--todo image form-->
+        </div>
+
+        <div class="mb-3">
+
+          <button
+            type="submit"
+            mat-raised-button
+            [disabled]="addStoryForm.invalid"
+            class="w-50 py-4 m-0 bg-white"
+          >Yaratish</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

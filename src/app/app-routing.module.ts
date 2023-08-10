@@ -7,7 +7,6 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    canMatch: [authCanmatchGuard]
   },
   {
     path: 'story/:id',
@@ -21,6 +20,15 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then(m=>m.RegisterModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then(m=>m.ProfileModule)
+  },
+  {
+    path: 'add-story',
+    loadChildren: () => import('./add-story/add-story.module').then(m=>m.AddStoryModule),
+    canMatch: [authCanmatchGuard]
   },
   {
     path: '',
