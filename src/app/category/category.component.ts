@@ -16,7 +16,9 @@ export class CategoryComponent implements OnInit{
   ngOnInit() {
 
   }
-  getCategoryId() {
-    this.storyCartService.getStories(`?category=${this.category.id}`)
-  }
+  // getCategoryId() {
+  //   this.storyCartService.getStories(`?category=${this.category.id}`).subscribe((res: any)=>{
+  //     console.log(res['hydra:member'])
+  //   })
+  // }
 }

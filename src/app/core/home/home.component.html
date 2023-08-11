@@ -7,6 +7,7 @@
       <div class="col-12 col-md-3 h-100 position-static rounded-0 shadow pe-0 mt-4 list-group sidebarBg">
         <ng-container *ngFor="let category of categories">
           <app-category
+            (click)="getCategoryId(category.id)"
             [category] = category
           ></app-category>
         </ng-container>

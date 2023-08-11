@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {StoryCartService} from "../../story-cart/story-cart.service";
 import {StoryCart} from "../../story-cart/story-cart";
 import {Observable} from "rxjs";
@@ -12,6 +12,7 @@ import {CategoryService} from "../../category/category.service";
 export class HomeComponent implements OnInit{
   storyCarts!: any
   categories!: any
+
   constructor(
     private storyCartService: StoryCartService,
     private categoryService: CategoryService,
@@ -21,13 +22,16 @@ export class HomeComponent implements OnInit{
   ngOnInit() {
     this.storyCartService.getStories().subscribe((storyCarts: any) => {
       this.storyCarts = storyCarts['hydra:member']
-      console.log(this.storyCarts)
     })
 
     this.categoryService.getCategories().subscribe((categories: any) => {
       this.categories = categories['hydra:member']
-      console.log(this.categories)
     })
   }
 
+  getCategoryId(categoryId: number) {
+    this.storyCartService.getStories(`?category=${categoryId}`).subscribe((res: any)=>{
+      this.storyCarts = res['hydra:member']
+    })
+  }
 }
