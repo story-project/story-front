@@ -5,11 +5,14 @@
   margin: auto;
 }
 .formContainer {
-  padding: 56px 0;
+  padding: 120px 0 56px 0;
 }
 .formTitle {
   color: #656255;
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
+}
+.formMessage {
+  top: 60px;
 }

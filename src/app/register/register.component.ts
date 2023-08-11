@@ -15,6 +15,8 @@ import {AuthService} from "../auth/auth.service";
 export class RegisterComponent implements OnInit{
   registerForm!: FormGroup
   hide = true
+  message!: string
+  showMessage = false
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,25 +47,36 @@ export class RegisterComponent implements OnInit{
   }
 
   registerProcess() {
-    console.log(this.registerForm.value)
+    // console.log(this.registerForm.value)
     this.registerService.register(this.registerForm.value).subscribe(
       (res) => {
-        console.log(res)
-
-        const person: Person = {
-          username: this.registerForm.value.username,
-          fullname: this.registerForm.value.fullname,
-          user: res['@id']
-        }
-        this.profileService.addPerson(person).subscribe(
-          (res: any) => {
-            console.log(res)
-            this.router.navigate(['/home'])
-          },
-          err => {
-            console.log(err)
-          }
-        )
+        this.showMessage = true
+        this.message = "Ro'yhatdan muvaffaqiyatli o'tdingiz, Endi Login qilishingiz mumkin!"
+        setTimeout(() => {
+          this.showMessage = false
+          this.router.navigate(['/login'])
+        }, 4000)
+        // const person: Person = {
+        //   username: this.registerForm.value.username,
+        //   fullname: this.registerForm.value.fullname,
+        //   user: res['@id']
+        // }
+        // this.profileService.addPerson(person).subscribe(
+        //   (res: any) => {
+        //     console.log(res)
+        //     this.router.navigate(['/home'])
+        //   },
+        //   err => {
+        //     console.log(err)
+        //   }
+        // )
+      },
+      err => {
+        this.showMessage = true
+        this.message = "Ro'yhatdan o'tishda xatolik bo'ldi, iltimos qayta urinib ko'ring!"
+        setTimeout(() => {
+          this.showMessage = false
+        }, 4000)
       }
     )
   }

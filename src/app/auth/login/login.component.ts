@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth.service";
 import {Auth} from "../auth";
@@ -10,8 +10,11 @@ import {provideRouter, Router} from "@angular/router";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit{
+  @ViewChild('formMessage') formMessage!: ElementRef
   hide = true
   loginForm!: FormGroup
+  message!: string
+  showMessage = false
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,10 +38,20 @@ export class LoginComponent implements OnInit{
   }
 
   loginProcess() {
-    this.authService.login(this.loginForm.value).subscribe((jwtToken) => {
+    this.authService.login(this.loginForm.value).subscribe(
+      (jwtToken) => {
       localStorage.setItem('jwtToken', jwtToken.accessToken)
       this.router.navigate(['/home'])
-    })
+
+    },
+      (err) => {
+        this.showMessage = true
+        this.message = "Siz oldin Ro'yhatdan o'tmagansiz!"
+        setTimeout(() => {
+          this.showMessage = false
+        }, 4000)
+      }
+    )
   }
   get email() {
     return this.loginForm.controls?.['email']

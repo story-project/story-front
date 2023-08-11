@@ -1,4 +1,7 @@
-<div class="container-fluid">
+<div class="container-fluid position-relative">
+  <div *ngIf="showMessage" #formMessage class="formMessage position-absolute top-0 start-50 translate-middle-x">
+    <p>{{message}}</p>
+  </div>
   <div class="formContainer" >
     <h2 class="formTitle ">Kirish</h2>
 

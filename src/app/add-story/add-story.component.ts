@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CategoryService} from "../category/category.service";
-import {AddPictureService} from "./add-picture.service";
+import {AddPictureService} from "./add-picture/add-picture.service";
 import {AddStoryService} from "./add-story.service";
 import {AddStory} from "./add-story";
 import {ProfileService} from "../profile/profile.service";
@@ -17,7 +17,9 @@ export class AddStoryComponent implements OnInit, OnDestroy{
   addStoryForm!: FormGroup
   categories!: any
   sub$ = new Subject()
-  createrUrl = "/api/people/15"
+  createrUrl = "/api/people/15" // todo creator'ni to'g'irlash kerak
+  message!: string
+  showMessage = false
 
   constructor(
     private formBuilder: FormBuilder,
@@ -89,20 +91,24 @@ export class AddStoryComponent implements OnInit, OnDestroy{
         console.log(story)
         this.addStoryService.addStory(story).subscribe(
           res=>{
-          console.log(res)
+            this.showMessage = true
+            this.message = "Sizning hikoyangiz ma'lumotlar omboriga qo'shildi!"
+            setTimeout(() => {
+              this.showMessage = false
+            }, 4000)
           },
           err=> {
-            console.log(err)
+            this.showMessage = true
+            this.message = "Hikoyani qo'shishda xatolik bor, iltimos qayta tekshirib ko'ring!"
+            setTimeout(() => {
+              this.showMessage = false
+            }, 4000)
           }
           )
 
       },
-      err=>{
-        console.log(err)
-      }
     )
 
-    console.log(this.addStoryForm.value)
   }
 
   ngOnDestroy() {
