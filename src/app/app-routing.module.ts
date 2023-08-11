@@ -10,7 +10,8 @@ const routes: Routes = [
   },
   {
     path: 'story/:id',
-    loadChildren: () => import('./story/story.module').then(m=>m.StoryModule)
+    loadChildren: () => import('./story/story.module').then(m=>m.StoryModule),
+    canMatch: [authCanmatchGuard]
   },
   {
     path: 'login',
