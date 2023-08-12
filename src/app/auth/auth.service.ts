@@ -30,6 +30,10 @@ export class AuthService implements OnInit {
     }))
   }
 
+  logout() {
+    return localStorage.removeItem('jwtToken')
+  }
+
   getToken() {
     return localStorage.getItem('jwtToken')
   }

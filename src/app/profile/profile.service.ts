@@ -10,7 +10,7 @@ import {environment} from "../../environments/environment";
 export class ProfileService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
   ) { }
 
   getPerson(personId: any) {
