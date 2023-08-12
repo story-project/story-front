@@ -1,7 +1,5 @@
-import {Component, OnChanges, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StoryCartService} from "../../story-cart/story-cart.service";
-import {StoryCart} from "../../story-cart/story-cart";
-import {Observable} from "rxjs";
 import {CategoryService} from "../../category/category.service";
 
 @Component({
@@ -32,6 +30,16 @@ export class HomeComponent implements OnInit{
   getCategoryId(categoryId: number) {
     this.storyCartService.getStories(`?category=${categoryId}`).subscribe((res: any)=>{
       this.storyCarts = res['hydra:member']
+    })
+  }
+
+  // getStoryId(storyId: number) {
+  //   this.storyComponent.getStoryProcces(storyId)
+  // }
+
+  getAllStories() {
+    this.storyCartService.getStories().subscribe((storyCarts: any) => {
+      this.storyCarts = storyCarts['hydra:member']
     })
   }
 }
