@@ -1,10 +1,12 @@
 <!--Main start-->
 <div
   class="col-12 col-md-8 p-3 p-md-5 mx-auto mainRead shadow storyContainer"
-
 >
+<ng-container *ngIf="story">
   <h1 class="fw-bolder">{{story.name}}</h1><br/>
+  <p>{{story.description}}</p>
   <p>{{story.text}}</p>
   <h6>{{story.creater.username}}</h6>
+</ng-container>
 </div>
 <!--Main end-->
