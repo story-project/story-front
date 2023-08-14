@@ -17,20 +17,9 @@ export class StoryComponent implements OnInit{
     ) {
   }
   ngOnInit() {
-    this.storyService.getStory(this.route.snapshot.paramMap.get('id')).subscribe((story: any)=>{
-        this.story = story
-      })
+    this.route.data.subscribe(data=>{
+      this.story = data['storyResolver']
+      console.log(this.story)
+    })
   }
-  // getStoryProcces(storyId: number) {
-  //
-  //   this.storyService.getStory(storyId).subscribe((story: any)=>{
-  //     console.log(story)
-  //     this.story = story
-  //   },
-  //     error => {
-  //       console.log(error)
-  //     }
-  //   )
-  // }
 }
-// this.route.snapshot.paramMap.get('id')

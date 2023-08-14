@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from "./core/home/home.component";
 import {authCanmatchGuard, authCantmatchGuard} from "./auth/guards/auth-canmatch.guard";
+import {storyResolver} from "./story/resolvers/story.resolver";
 
 const routes: Routes = [
   {
@@ -11,6 +12,9 @@ const routes: Routes = [
   {
     path: 'story/:id',
     loadChildren: () => import('./story/story.module').then(m=>m.StoryModule),
+    resolve: {
+      storyResolver: storyResolver
+    },
     canMatch: [authCanmatchGuard]
   },
   {
