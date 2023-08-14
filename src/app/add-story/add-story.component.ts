@@ -7,6 +7,7 @@ import {AddStory} from "./add-story";
 import {ProfileService} from "../profile/profile.service";
 import {RegisterComponent} from "../register/register.component";
 import {map, Subject, takeUntil} from "rxjs";
+import {AuthService} from "../auth/auth.service";
 
 @Component({
   selector: 'app-add-story',
@@ -17,7 +18,7 @@ export class AddStoryComponent implements OnInit, OnDestroy{
   addStoryForm!: FormGroup
   categories!: any
   sub$ = new Subject()
-  createrUrl = "/api/people/15" // todo creator'ni to'g'irlash kerak
+  createrUrl!: any // todo creator'ni to'g'irlash kerak
   message!: string
   showMessage = false
 
@@ -26,7 +27,8 @@ export class AddStoryComponent implements OnInit, OnDestroy{
     private categoryService: CategoryService,
     private addPictureService: AddPictureService,
     private addStoryService: AddStoryService,
-    private profileService: ProfileService,
+    private authService: AuthService,
+    private profileService: ProfileService
   ) {}
 
   ngOnInit() {
@@ -60,6 +62,12 @@ export class AddStoryComponent implements OnInit, OnDestroy{
       this.categories = res['hydra:member']
       console.log(this.categories)
     })
+
+    this.profileService.getPerson(this.authService.getUserInfo().id)
+      .subscribe((res: any) => {
+        this.createrUrl = res['hydra:member'][0]['@id']
+
+      })
   }
 
   onFileChange(event: any) {
@@ -95,7 +103,8 @@ export class AddStoryComponent implements OnInit, OnDestroy{
             this.message = "Sizning hikoyangiz ma'lumotlar omboriga qo'shildi!"
             setTimeout(() => {
               this.showMessage = false
-            }, 4000)
+              window.location.reload()
+            }, 3000)
           },
           err=> {
             this.showMessage = true
