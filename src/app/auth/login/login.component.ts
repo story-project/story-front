@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit{
         this.authService.isUserLoggedIn.next(false)
         window.location.reload()
         localStorage.removeItem('jwtToken')
-      }, 10000)
+      }, 86399000)
     },
       () => {
         this.showMessage = true
