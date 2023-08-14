@@ -8,22 +8,25 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class ProfileService {
+  userId!: number
 
   constructor(
     private http: HttpClient,
   ) { }
 
-  getPerson(personId: any) {
-    return this.http.get(`${environment.baseUrl}/people/${personId}`)
+  getPerson(userId: any) {
+    return this.http.get(`${environment.baseUrl}/people?user=${userId}`)
   }
 
   addPerson(person: Person) {
-    return this.http.post(`${environment.baseUrl}/people`, person).pipe(
-      map((res:any) => {
-        this.getPerson(res.id).subscribe(res=>{
-          console.log(res)})
-        return res
-      })
+    return this.http.post(`${environment.baseUrl}/people`, person)
+      .pipe(
+          map((res:any) => {
+            this.userId = res.id
+          // this.getPerson(res.id).subscribe(res=>{
+          //   console.log(res)})
+          return res
+        })
     )
   }
 }

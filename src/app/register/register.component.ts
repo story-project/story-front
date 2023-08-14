@@ -56,20 +56,20 @@ export class RegisterComponent implements OnInit{
           this.showMessage = false
           this.router.navigate(['/login'])
         }, 4000)
-        // const person: Person = {
-        //   username: this.registerForm.value.username,
-        //   fullname: this.registerForm.value.fullname,
-        //   user: res['@id']
-        // }
-        // this.profileService.addPerson(person).subscribe(
-        //   (res: any) => {
-        //     console.log(res)
-        //     this.router.navigate(['/home'])
-        //   },
-        //   err => {
-        //     console.log(err)
-        //   }
-        // )
+        const person: Person = {
+          username: this.registerForm.value.username,
+          fullname: this.registerForm.value.fullname,
+          user: res['@id']
+        }
+        this.profileService.addPerson(person).subscribe(
+          (res: any) => {
+            console.log(res)
+            this.router.navigate(['/home'])
+          },
+          err => {
+            console.log(err)
+          }
+        )
       },
       err => {
         this.showMessage = true
