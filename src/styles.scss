@@ -96,7 +96,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .formMessage {
   padding: 1rem 2rem 1rem 2rem;
   background-color: rgb(101, 98, 85);
-  opacity: 50%;
+  opacity: 70%;
+  z-index: 30;
   p {
     margin: 0;
     color: white;

@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit{
       (jwtToken) => {
       localStorage.setItem('jwtToken', jwtToken.accessToken)
       this.router.navigate(['/home'])
-
     },
       (err) => {
         this.showMessage = true
@@ -53,6 +52,7 @@ export class LoginComponent implements OnInit{
       }
     )
   }
+
   get email() {
     return this.loginForm.controls?.['email']
   }
