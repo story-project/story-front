@@ -37,4 +37,16 @@ export class AuthService implements OnInit {
   getToken() {
     return localStorage.getItem('jwtToken')
   }
+
+  getUserInfo() {
+    const token = this.getToken();
+    let payload;
+    if (token) {
+      payload = token.split(".")[1];
+      payload = window.atob(payload);
+      return JSON.parse(payload);
+    } else {
+      return null;
+    }
+  }
 }
