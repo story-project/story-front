@@ -1,8 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth.service";
-import {Auth} from "../auth";
-import {provideRouter, Router} from "@angular/router";
+import { Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -41,9 +40,16 @@ export class LoginComponent implements OnInit{
     this.authService.login(this.loginForm.value).subscribe(
       (jwtToken) => {
       localStorage.setItem('jwtToken', jwtToken.accessToken)
+
       this.router.navigate(['/home'])
+
+      setTimeout(()=>{
+        this.authService.isUserLoggedIn.next(false)
+        window.location.reload()
+        localStorage.removeItem('jwtToken')
+      }, 10000)
     },
-      (err) => {
+      () => {
         this.showMessage = true
         this.message = "Siz oldin Ro'yhatdan o'tmagansiz!"
         setTimeout(() => {
