@@ -5,8 +5,7 @@ import {AddPictureService} from "./add-picture/add-picture.service";
 import {AddStoryService} from "./add-story.service";
 import {AddStory} from "./add-story";
 import {ProfileService} from "../profile/profile.service";
-import {RegisterComponent} from "../register/register.component";
-import {map, Subject, takeUntil} from "rxjs";
+import { Subject} from "rxjs";
 import {AuthService} from "../auth/auth.service";
 
 @Component({
@@ -18,7 +17,7 @@ export class AddStoryComponent implements OnInit, OnDestroy{
   addStoryForm!: FormGroup
   categories!: any
   sub$ = new Subject()
-  createrUrl!: any // todo creator'ni to'g'irlash kerak
+  createrUrl!: any
   message!: string
   showMessage = false
 
