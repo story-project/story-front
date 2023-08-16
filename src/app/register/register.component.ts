@@ -4,8 +4,6 @@ import {RegisterService} from "./register.service";
 import {Person} from "./person";
 import {Router} from "@angular/router";
 import {ProfileService} from "../profile/profile.service";
-import {BehaviorSubject} from "rxjs";
-import {AuthService} from "../auth/auth.service";
 
 @Component({
   selector: 'app-register',
@@ -64,14 +62,10 @@ export class RegisterComponent implements OnInit{
         this.profileService.addPerson(person).subscribe(
           (res: any) => {
             console.log(res)
-            this.router.navigate(['/home'])
-          },
-          err => {
-            console.log(err)
           }
         )
       },
-      err => {
+      () => {
         this.showMessage = true
         this.message = "Ro'yhatdan o'tishda xatolik bo'ldi, iltimos qayta urinib ko'ring!"
         setTimeout(() => {
